@@ -1,4 +1,4 @@
-{
+t{
     "version": 2,
     "builds":[
         {
@@ -8,8 +8,8 @@
     ],
     "routes": [
         {
-            "source": "/(.*)",
-            "destination": "/"
+            "src": "/(.*)",
+            "dest": "/"
         }
     ]
 }
