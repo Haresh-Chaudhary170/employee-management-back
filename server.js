@@ -8,7 +8,7 @@ const app= express();
 app.use(express.json());
 
 app.use(cors());
-app.use(cors({ origin: 'https://employee-management-back-gj0ho5yab.vercel.app' }));
+app.use(cors({ origin: 'https://employee-management-back.vercel.app/' }));
 
 dotenv.config({path:'./.env'});
 
