@@ -1,12 +1,14 @@
-const app= require('./app');
+const express= require('express');
+const cors = require('cors');
 const dotenv=require('dotenv');
 const connectDaatabase= require('./config/database')
 
-process.on('uncaughtException', err=>{
-    console.log(`ERROR: ${err.stack}`);
-    console.log('Shutting down the server due to uncaught Exception.');
-    process.exit(1)
-})
+
+const app= express();
+app.use(express.json());
+
+app.use(cors());
+app.use(cors({ origin: 'http://localhost:3000' }));
 
 dotenv.config({path:'./.env'});
 
@@ -15,6 +17,13 @@ connectDaatabase();
 const server= app.listen(process.env.PORT, ()=>{
     console.log(`Server Started on Port: ${process.env.PORT} in ${process.env.NODE_ENV} mode.`)
 })
+
+//ROUTES
+const employees= require('./routes/employee');
+
+app.use('/api/v1', employees);
+
+
 process.on('unhandledRejection', err=>{
     console.log(`ERROR: ${err.message}`);
     console.log('Shutting down the server due to unhandled Promise rejections.');
